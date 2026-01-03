@@ -17,3 +17,4 @@ try {
     echo 'MySQL connection: FAILED - '.$e->getMessage()."\n";
 }
 
+

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f641a3927145a7792f854516fb0058b",
+    "content-hash": "780876445233e5a00185d1e63094a5ef",
     "packages": [
         {
             "name": "aldeebhasan/lottie-laravel",

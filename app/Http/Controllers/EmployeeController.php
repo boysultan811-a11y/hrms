@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
         $employees = Employee::all(); // جلب كل الموظفين
-        \Log::info('Employees index', ['count' => $employees->count()]);
+        Log::info('Employees index', ['count' => $employees->count()]);
 
         return view('dashboard.employees.index', compact('employees'));
     }
@@ -41,11 +42,11 @@ class EmployeeController extends Controller
 
         try {
             $employee = Employee::create($validated);
-            \Log::info('Employee created successfully', ['employee_id' => $employee->id, 'name' => $employee->name]);
+            Log::info('Employee created successfully', ['employee_id' => $employee->id, 'name' => $employee->name]);
 
             return redirect()->route('employees.index')->with('success', 'تم إضافة الموظف بنجاح');
         } catch (\Exception $e) {
-            \Log::error('Error creating employee', ['error' => $e->getMessage(), 'data' => $validated]);
+            Log::error('Error creating employee', ['error' => $e->getMessage(), 'data' => $validated]);
 
             return back()->withInput()->withErrors(['error' => 'حدث خطأ أثناء إضافة الموظف: '.$e->getMessage()]);
         }
@@ -80,7 +81,7 @@ class EmployeeController extends Controller
 
             return redirect()->route('employees.index')->with('success', 'تم تعديل بيانات الموظف بنجاح');
         } catch (\Exception $e) {
-            \Log::error('Error updating employee', ['error' => $e->getMessage(), 'employee_id' => $employee->id]);
+            Log::error('Error updating employee', ['error' => $e->getMessage(), 'employee_id' => $employee->id]);
 
             return back()->withInput()->withErrors(['error' => 'حدث خطأ أثناء تعديل الموظف: '.$e->getMessage()]);
         }

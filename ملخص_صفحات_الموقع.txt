@@ -1,0 +1,374 @@
+================================================================================
+                    ملخص شامل لصفحات موقع نظام إدارة الموارد البشرية (HRMS)
+================================================================================
+
+معلومات عامة:
+- اسم النظام: HRMS (Human Resources Management System)
+- اللغة: العربية (RTL)
+- Framework: Laravel 12
+- PHP: 8.4.16
+- قاعدة البيانات: MySQL
+
+================================================================================
+                              صفحات المصادقة (Authentication)
+================================================================================
+
+1. صفحة تسجيل الدخول (Login)
+   - المسار: /login
+   - الملف: resources/views/auth/login.blade.php
+   - الوظيفة: تسجيل الدخول باستخدام اسم المستخدم وكلمة المرور
+   - بيانات الدخول الافتراضية:
+     * اسم المستخدم: admin
+     * كلمة المرور: 1234567
+
+2. تسجيل الخروج (Logout)
+   - المسار: POST /logout
+   - الوظيفة: تسجيل الخروج من النظام
+
+================================================================================
+                            لوحة التحكم الرئيسية (Dashboard)
+================================================================================
+
+1. الصفحة الرئيسية
+   - المسار: /dashboard
+   - الملف: resources/views/dashboard/index.blade.php
+   - الوظيفة: عرض نظرة عامة على النظام
+
+================================================================================
+                           الأقسام الأساسية (Core Sections)
+================================================================================
+
+1. إدارة الموظفين (Employees)
+   - المسار الرئيسي: /employees
+   - الصفحات:
+     * عرض جميع الموظفين: GET /employees
+     * إضافة موظف جديد: GET /employees/create
+     * حفظ موظف جديد: POST /employees
+     * تعديل موظف: GET /employees/{id}/edit
+     * تحديث موظف: PUT /employees/{id}
+     * حذف موظف: DELETE /employees/{id}
+   - الملفات:
+     * resources/views/dashboard/employees/index.blade.php
+     * resources/views/dashboard/employees/create.blade.php
+     * resources/views/dashboard/employees/edit.blade.php
+   - الوظيفة: إدارة بيانات الموظفين (الاسم، الرقم التسلسلي، رقم الهوية، العنوان، الجنس، المدينة، الحالة الاجتماعية، المؤهل، المسمى الوظيفي، القسم، الراتب، فئة الإجازة، البريد الإلكتروني، جدول الدوام)
+
+2. إدارة الحضور والانصراف (Attendances)
+   - المسار الرئيسي: /attendances
+   - الصفحات:
+     * عرض جميع سجلات الحضور: GET /attendances
+     * إضافة سجل حضور: GET /attendances/create
+     * حفظ سجل حضور: POST /attendances
+     * تعديل سجل حضور: GET /attendances/{id}/edit
+     * تحديث سجل حضور: PUT /attendances/{id}
+     * حذف سجل حضور: DELETE /attendances/{id}
+   - الملفات:
+     * resources/views/dashboard/attendances/index.blade.php
+     * resources/views/dashboard/attendances/create.blade.php
+     * resources/views/dashboard/attendances/edit.blade.php
+   - الوظيفة: تسجيل وإدارة الحضور والانصراف للموظفين
+
+3. إدارة الإجازات (Leaves)
+   - المسار الرئيسي: /leaves
+   - الصفحات:
+     * عرض طلبات الإجازات: GET /leaves
+     * إضافة طلب إجازة: GET /leaves/create
+     * حفظ طلب إجازة: POST /leaves
+     * موافقة على إجازة: PATCH /leaves/{id}/approve
+     * رفض إجازة: PATCH /leaves/{id}/reject
+   - الملفات:
+     * resources/views/dashboard/leaves/index.blade.php
+     * resources/views/dashboard/leaves/create.blade.php
+     * resources/views/dashboard/leaves/edit.blade.php
+   - الوظيفة: إدارة طلبات الإجازات (سنوية، مرضية، طارئة، بدون راتب)
+
+4. الصلاحيات والمستخدمين (Roles)
+   - المسار الرئيسي: /roles
+   - الصفحات:
+     * عرض الصلاحيات: GET /roles
+     * إضافة صلاحية جديدة: GET /roles/create
+     * حفظ صلاحية: POST /roles
+     * تعديل صلاحية: GET /roles/{id}/edit
+     * تحديث صلاحية: PUT /roles/{id}
+     * حذف صلاحية: DELETE /roles/{id}
+   - الملفات:
+     * resources/views/dashboard/roles/index.blade.php
+     * resources/views/dashboard/roles/create.blade.php
+     * resources/views/dashboard/roles/edit.blade.php
+   - الوظيفة: إدارة صلاحيات المستخدمين والأدوار
+
+================================================================================
+                         الأقسام المالية والإدارية (Finance & Admin)
+================================================================================
+
+5. إدارة الرواتب والأجور (Payrolls)
+   - المسار الرئيسي: /payrolls
+   - الصفحات:
+     * عرض جميع الرواتب: GET /payrolls
+     * إضافة راتب جديد: GET /payrolls/create
+     * حفظ راتب: POST /payrolls
+     * تعديل راتب: GET /payrolls/{id}/edit
+     * تحديث راتب: PUT /payrolls/{id}
+     * حذف راتب: DELETE /payrolls/{id}
+   - الملفات:
+     * resources/views/dashboard/payrolls/index.blade.php
+     * resources/views/dashboard/payrolls/create.blade.php
+     * resources/views/dashboard/payrolls/edit.blade.php
+   - الوظيفة: إدارة رواتب الموظفين (الراتب الأساسي، البدلات، الاستقطاعات، الضرائب، المكافآت، الراتب الإجمالي)
+
+6. المزايا والتعويضات (Benefits)
+   - المسار الرئيسي: /benefits
+   - الصفحات:
+     * عرض جميع المزايا: GET /benefits
+     * إضافة ميزة جديدة: GET /benefits/create
+     * حفظ ميزة: POST /benefits
+     * تعديل ميزة: GET /benefits/{id}/edit
+     * تحديث ميزة: PUT /benefits/{id}
+     * حذف ميزة: DELETE /benefits/{id}
+   - الملفات:
+     * resources/views/dashboard/benefits/index.blade.php
+     * resources/views/dashboard/benefits/create.blade.php
+     * resources/views/dashboard/benefits/edit.blade.php
+   - الوظيفة: إدارة المزايا والتعويضات للموظفين
+
+================================================================================
+                              الإدارة (Management)
+================================================================================
+
+7. إدارة الأقسام (Sections)
+   - المسار الرئيسي: /sections
+   - الصفحات:
+     * عرض جميع الأقسام: GET /sections
+     * إضافة قسم جديد: GET /sections/create
+     * حفظ قسم: POST /sections
+     * عرض قسم: GET /sections/{id}
+     * تعديل قسم: GET /sections/{id}/edit
+     * تحديث قسم: PUT /sections/{id}
+     * حذف قسم: DELETE /sections/{id}
+   - الملفات:
+     * resources/views/dashboard/sections/index.blade.php
+     * resources/views/dashboard/sections/create.blade.php
+     * resources/views/dashboard/sections/edit.blade.php
+   - الوظيفة: إدارة أقسام الشركة (الاسم والوصف)
+
+8. إدارة الشفتات (Shifts)
+   - المسار الرئيسي: /shifts
+   - الصفحات:
+     * عرض جميع الشفتات: GET /shifts
+     * إضافة شفتة جديدة: GET /shifts/create
+     * حفظ شفتة: POST /shifts
+     * تعديل شفتة: GET /shifts/{id}/edit
+     * تحديث شفتة: PUT /shifts/{id}
+     * حذف شفتة: DELETE /shifts/{id}
+   - الملفات:
+     * resources/views/dashboard/shifts/index.blade.php
+     * resources/views/dashboard/shifts/create.blade.php
+     * resources/views/dashboard/shifts/edit.blade.php
+   - الوظيفة: إدارة شفتات العمل (الاسم، وقت البدء، وقت الانتهاء)
+
+================================================================================
+                          شؤون الموظفين (Employee Affairs)
+================================================================================
+
+9. طلبات الموظفين (Employee Requests)
+   - المسار الرئيسي: /employee-requests
+   - الصفحات:
+     * عرض جميع الطلبات: GET /employee-requests
+     * إضافة طلب جديد: GET /employee-requests/create
+     * حفظ طلب: POST /employee-requests
+     * تعديل طلب: GET /employee-requests/{id}/edit
+     * تحديث طلب: PUT /employee-requests/{id}
+     * حذف طلب: DELETE /employee-requests/{id}
+   - الملفات:
+     * resources/views/dashboard/employee-requests/index.blade.php
+     * resources/views/dashboard/employee-requests/create.blade.php
+     * resources/views/dashboard/employee-requests/edit.blade.php
+   - الوظيفة: إدارة طلبات الموظفين (نوع الطلب، الوصف، الحالة: قيد الانتظار/معتمد/مرفوض، الرد)
+
+10. الإجراءات التأديبية (Disciplinary Actions)
+    - المسار الرئيسي: /disciplinary-actions
+    - الصفحات:
+      * عرض جميع الإجراءات: GET /disciplinary-actions
+      * إضافة إجراء جديد: GET /disciplinary-actions/create
+      * حفظ إجراء: POST /disciplinary-actions
+      * تعديل إجراء: GET /disciplinary-actions/{id}/edit
+      * تحديث إجراء: PUT /disciplinary-actions/{id}
+      * حذف إجراء: DELETE /disciplinary-actions/{id}
+    - الملفات:
+      * resources/views/dashboard/disciplinary-actions/index.blade.php
+      * resources/views/dashboard/disciplinary-actions/create.blade.php
+      * resources/views/dashboard/disciplinary-actions/edit.blade.php
+    - الوظيفة: إدارة الإجراءات التأديبية للموظفين
+
+11. الاستقالات وإنهاء الخدمة (Offboardings)
+    - المسار الرئيسي: /offboardings
+    - الصفحات:
+      * عرض جميع إنهاءات الخدمة: GET /offboardings
+      * إضافة إنهاء خدمة جديد: GET /offboardings/create
+      * حفظ إنهاء خدمة: POST /offboardings
+      * تعديل إنهاء خدمة: GET /offboardings/{id}/edit
+      * تحديث إنهاء خدمة: PUT /offboardings/{id}
+      * حذف إنهاء خدمة: DELETE /offboardings/{id}
+    - الملفات:
+      * resources/views/dashboard/offboardings/index.blade.php
+      * resources/views/dashboard/offboardings/create.blade.php
+      * resources/views/dashboard/offboardings/edit.blade.php
+    - الوظيفة: إدارة استقالات وإنهاء خدمات الموظفين (النوع: استقالة/إنهاء/تقاعد، تاريخ الاستقالة، آخر يوم عمل، السبب، التسوية النهائية، الحالة، الملاحظات)
+
+12. تهيئة الموظفين الجدد (Onboardings)
+    - المسار الرئيسي: /onboardings
+    - الصفحات:
+      * عرض جميع عمليات التهيئة: GET /onboardings
+      * إضافة تهيئة جديدة: GET /onboardings/create
+      * حفظ تهيئة: POST /onboardings
+      * تعديل تهيئة: GET /onboardings/{id}/edit
+      * تحديث تهيئة: PUT /onboardings/{id}
+      * حذف تهيئة: DELETE /onboardings/{id}
+    - الملفات:
+      * resources/views/dashboard/onboardings/index.blade.php
+      * resources/views/dashboard/onboardings/create.blade.php
+      * resources/views/dashboard/onboardings/edit.blade.php
+    - الوظيفة: إدارة تهيئة الموظفين الجدد (تاريخ البدء، المهام المطلوبة، الوثائق المطلوبة، الحالة: قيد الانتظار/قيد التنفيذ/مكتمل، الملاحظات)
+
+================================================================================
+                        التوظيف والتطوير (Recruitment & Development)
+================================================================================
+
+13. التوظيف والاستقطاب (Recruitments)
+    - المسار الرئيسي: /recruitments
+    - الصفحات:
+      * عرض جميع الوظائف: GET /recruitments
+      * إضافة وظيفة جديدة: GET /recruitments/create
+      * حفظ وظيفة: POST /recruitments
+      * تعديل وظيفة: GET /recruitments/{id}/edit
+      * تحديث وظيفة: PUT /recruitments/{id}
+      * حذف وظيفة: DELETE /recruitments/{id}
+    - الملفات:
+      * resources/views/dashboard/recruitments/index.blade.php
+      * resources/views/dashboard/recruitments/create.blade.php
+      * resources/views/dashboard/recruitments/edit.blade.php
+    - الوظيفة: إدارة الوظائف الشاغرة (المسمى الوظيفي، الوصف، القسم، تاريخ النشر، تاريخ الإغلاق، الحالة: مفتوحة/مغلقة/متوقفة، عدد المتقدمين)
+
+14. تقييم الأداء (Performance Reviews)
+    - المسار الرئيسي: /performance-reviews
+    - الصفحات:
+      * عرض جميع التقييمات: GET /performance-reviews
+      * إضافة تقييم جديد: GET /performance-reviews/create
+      * حفظ تقييم: POST /performance-reviews
+      * تعديل تقييم: GET /performance-reviews/{id}/edit
+      * تحديث تقييم: PUT /performance-reviews/{id}
+      * حذف تقييم: DELETE /performance-reviews/{id}
+    - الملفات:
+      * resources/views/dashboard/performance-reviews/index.blade.php
+      * resources/views/dashboard/performance-reviews/create.blade.php
+      * resources/views/dashboard/performance-reviews/edit.blade.php
+    - الوظيفة: إدارة تقييمات أداء الموظفين (تاريخ التقييم، الفترة، مؤشرات الأداء KPIs، التقييم العام من 1-10، ملاحظات المدير، ملاحظات الموظف)
+
+15. التدريب والتطوير (Trainings)
+    - المسار الرئيسي: /trainings
+    - الصفحات:
+      * عرض جميع الدورات: GET /trainings
+      * إضافة دورة جديدة: GET /trainings/create
+      * حفظ دورة: POST /trainings
+      * تعديل دورة: GET /trainings/{id}/edit
+      * تحديث دورة: PUT /trainings/{id}
+      * حذف دورة: DELETE /trainings/{id}
+    - الملفات:
+      * resources/views/dashboard/trainings/index.blade.php
+      * resources/views/dashboard/trainings/create.blade.php
+      * resources/views/dashboard/trainings/edit.blade.php
+    - الوظيفة: إدارة الدورات التدريبية (العنوان، الوصف، تاريخ البدء، تاريخ الانتهاء، المدرب، الحالة: مجدولة/قيد التنفيذ/مكتملة/ملغاة، المشاركون، المهارات المغطاة)
+
+================================================================================
+                         الوثائق والعقود (Documents & Contracts)
+================================================================================
+
+16. إدارة العقود (Contracts)
+    - المسار الرئيسي: /contracts
+    - الصفحات:
+      * عرض جميع العقود: GET /contracts
+      * إضافة عقد جديد: GET /contracts/create
+      * حفظ عقد: POST /contracts
+      * تعديل عقد: GET /contracts/{id}/edit
+      * تحديث عقد: PUT /contracts/{id}
+      * حذف عقد: DELETE /contracts/{id}
+    - الملفات:
+      * resources/views/dashboard/contracts/index.blade.php
+      * resources/views/dashboard/contracts/create.blade.php
+      * resources/views/dashboard/contracts/edit.blade.php
+    - الوظيفة: إدارة عقود العمل (نوع العقد، تاريخ البدء، تاريخ الانتهاء، الراتب، الشروط والبنود، الحالة: نشط/منتهي/منهي، مسار الوثيقة)
+
+17. إدارة الوثائق (Documents)
+    - المسار الرئيسي: /documents
+    - الصفحات:
+      * عرض جميع الوثائق: GET /documents
+      * إضافة وثيقة جديدة: GET /documents/create
+      * حفظ وثيقة: POST /documents
+      * تعديل وثيقة: GET /documents/{id}/edit
+      * تحديث وثيقة: PUT /documents/{id}
+      * حذف وثيقة: DELETE /documents/{id}
+    - الملفات:
+      * resources/views/dashboard/documents/index.blade.php
+      * resources/views/dashboard/documents/create.blade.php
+      * resources/views/dashboard/documents/edit.blade.php
+    - الوظيفة: إدارة وثائق الموظفين (الاسم، النوع: هوية/شهادة/عقد/رخصة/شهادة صحية/أخرى، مسار الملف، تاريخ الإصدار، تاريخ الانتهاء، الوصف)
+
+================================================================================
+                              التقارير (Reports)
+================================================================================
+
+18. إدارة التقارير (Reports)
+    - المسار الرئيسي: /reports
+    - الصفحات:
+      * عرض جميع التقارير: GET /reports
+      * إضافة تقرير جديد: GET /reports/create
+      * حفظ تقرير: POST /reports
+      * عرض تقرير: GET /reports/{id}
+      * تعديل تقرير: GET /reports/{id}/edit
+      * تحديث تقرير: PUT /reports/{id}
+      * حذف تقرير: DELETE /reports/{id}
+      * تصدير PDF: GET /reports/{id}/export-pdf
+    - الملفات:
+      * resources/views/dashboard/reports/index.blade.php
+      * resources/views/dashboard/reports/create.blade.php
+      * resources/views/dashboard/reports/edit.blade.php
+      * resources/views/dashboard/reports/show.blade.php
+      * resources/views/dashboard/reports/pdf.blade.php
+    - الوظيفة: إدارة التقارير (العنوان، النوع، تاريخ البدء، تاريخ الانتهاء، الوصف، البيانات، مسار الملف، منشئ التقرير)
+
+================================================================================
+                              الإحصائيات العامة
+================================================================================
+
+إجمالي الصفحات في النظام:
+- صفحة تسجيل الدخول: 1
+- لوحة التحكم الرئيسية: 1
+- صفحات CRUD كاملة: 18 قسم × (عرض + إضافة + تعديل) = 54 صفحة
+- صفحات خاصة (show, pdf): 2
+- المجموع: 58 صفحة
+
+الملفات الرئيسية:
+- ملف Layout الرئيسي: resources/views/dashboard/layout.blade.php
+- ملف تسجيل الدخول: resources/views/auth/login.blade.php
+- ملف لوحة التحكم: resources/views/dashboard/index.blade.php
+
+================================================================================
+                              ملاحظات مهمة
+================================================================================
+
+1. جميع الصفحات محمية بمصادقة (Authentication Middleware)
+2. النظام يدعم اللغة العربية بشكل كامل (RTL)
+3. جميع الصفحات تستخدم تصميم موحد ومتسق
+4. النظام يدعم عمليات CRUD الكاملة (Create, Read, Update, Delete)
+5. هناك معالجة للأخطاء والتحقق من البيانات في جميع النماذج
+6. النظام يحتوي على رسائل نجاح/خطأ واضحة للمستخدم
+
+================================================================================
+                                تاريخ الإنشاء
+================================================================================
+
+تم إنشاء هذا الملخص في: 2025-01-01
+آخر تحديث: 2025-01-01
+
+================================================================================
+
